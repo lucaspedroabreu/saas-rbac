@@ -3,17 +3,24 @@ import { Role } from '../models/roles'
 import { UserFieldsForPermission } from '../models/user'
 import { AppAbility } from './abilities'
 
-type DefineUserPermissionsCallback = (
+type PermissionsByRole = (
     user: UserFieldsForPermission,
     builder: AbilityBuilder<AppAbility>
 ) => void
-type RolePermissionsObject = Record<Role, DefineUserPermissionsCallback>
 
-export const rolePermissions: RolePermissionsObject = {
-    ADMIN: (_, { can }) => {
+export const rolePermissions: Record<Role, PermissionsByRole> = {
+    SUPERADMIN: (user, { can }) => {
         can('manage', 'all')
     },
-    MEMBER: (_, { can }) => {
+    ADMIN: (user, { can, cannot }) => {
+        can('manage', 'all')
+
+        cannot('transfer_ownership', 'Organization')
+        can('transfer_ownership', 'Organization', { ownerId: { $eq: user.id } })
+
+        cannot('create', 'Project', {})
+    },
+    MEMBER: (user, { can }) => {
         can('invite', 'User')
         can('message', 'User')
         can('manage', 'Project')

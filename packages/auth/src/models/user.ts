@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { roleSchema } from './roles'
 
 export const userFieldsForPermissionSchema = z.object({
-    __subjectType: z.literal('User').default('User'),
+    __typename: z.literal('User').default('User'),
     id: z.string().uuid({ message: 'ID must be a valid uuidV4' }),
     email: z
         .string({ message: 'Email must be a string' })
