@@ -6,6 +6,6 @@ export const OrganizationFieldsForPermissionSchema = z.object({
     ownerId: z.string().uuid({ message: 'OwnerID is not a valid uuidV4' }),
 })
 
-export type OrganizationFieldsForPermission = z.output<
+export type OrganizationFieldsForPermission = z.input<
     typeof OrganizationFieldsForPermissionSchema
 >

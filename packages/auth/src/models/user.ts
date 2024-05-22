@@ -11,6 +11,6 @@ export const userFieldsForPermissionSchema = z.object({
     role: roleSchema,
 })
 
-export type UserFieldsForPermission = z.output<
+export type UserFieldsForPermission = z.input<
     typeof userFieldsForPermissionSchema
 >

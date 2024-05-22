@@ -9,23 +9,25 @@ type PermissionsByRole = (
 ) => void
 
 export const rolePermissions: Record<Role, PermissionsByRole> = {
-    SUPERADMIN: (user, { can }) => {
+    SUPERADMIN: (_, { can }) => {
         can('manage', 'all')
     },
     ADMIN: (user, { can, cannot }) => {
         can('manage', 'all')
 
-        cannot('transfer_ownership', 'Organization')
-        can('transfer_ownership', 'Organization', { ownerId: { $eq: user.id } })
-
-        cannot('create', 'Project', {})
+        cannot(['transfer_ownership', 'update', 'delete'], 'Organization')
+        can(['transfer_ownership', 'update', 'delete'], 'Organization', {
+            ownerId: { $eq: user.id },
+        })
     },
     MEMBER: (user, { can }) => {
-        can('invite', 'User')
-        can('message', 'User')
-        can('manage', 'Project')
+        can(['read', 'invite', 'message'], 'User')
+        can('manage', 'User', { id: { $eq: user.id } })
+
+        can(['create', 'read'], 'Project')
+        can(['update', 'delete'], 'Project', { ownerId: { $eq: user.id } })
     },
-    BILLING: (_, {}) => {
-        throw new Error('Function not implemented.')
+    BILLING: (_, { can }) => {
+        can('manage', 'Billing')
     },
 }
