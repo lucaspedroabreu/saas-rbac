@@ -6,8 +6,8 @@ export type { BillingActions } from './billing'
 export { InviteActionsSchema } from './invite'
 export type { InviteActions } from './invite'
 
-export { OrganizationActionsSchema } from './organizations'
-export type { OrganizationActions } from './organizations'
+export { OrganizationActionsSchema } from './organization'
+export type { OrganizationActions } from './organization'
 
 export { ProjectActionsSchema } from './project'
 export type { ProjectActions } from './project'

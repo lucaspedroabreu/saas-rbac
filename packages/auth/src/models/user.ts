@@ -1,11 +1,9 @@
 import { z } from 'zod'
 import { roleSchema } from './roles'
 
-export const userSchema = z.object({
-    name: z
-        .string({ message: 'Name bust be a string' })
-        .min(1, 'User must have a name')
-        .min(2, 'Name must be at least 2 characters long'),
+export const userFieldsForPermissionSchema = z.object({
+    __subjectType: z.literal('User').default('User'),
+    id: z.string().uuid({ message: 'ID must be a valid uuidV4' }),
     email: z
         .string({ message: 'Email must be a string' })
         .min(1, 'Must entar an email!')
@@ -13,5 +11,6 @@ export const userSchema = z.object({
     role: roleSchema,
 })
 
-export type UserRequest = z.input<typeof userSchema>
-export type User = z.output<typeof userSchema>
+export type UserFieldsForPermission = z.output<
+    typeof userFieldsForPermissionSchema
+>

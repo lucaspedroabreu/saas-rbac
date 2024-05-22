@@ -2,7 +2,7 @@ import { CreateAbility, createMongoAbility, MongoAbility } from '@casl/ability'
 import { BaseActions } from '../actions'
 import { BillingAbilities } from './billing'
 import { InviteAbilities } from './invite'
-import { OrganizationAbilities } from './organizations'
+import { OrganizationAbilities } from './organization'
 import { ProjectAbilities } from './project'
 import { UserAbilities } from './user'
 

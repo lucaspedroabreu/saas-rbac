@@ -1,10 +1,10 @@
 import { AbilityBuilder } from '@casl/ability'
 import { Role } from '../models/roles'
-import { User } from '../models/user'
+import { UserFieldsForPermission } from '../models/user'
 import { AppAbility } from './abilities'
 
 type DefineUserPermissionsCallback = (
-    user: User,
+    user: UserFieldsForPermission,
     builder: AbilityBuilder<AppAbility>
 ) => void
 type RolePermissionsObject = Record<Role, DefineUserPermissionsCallback>

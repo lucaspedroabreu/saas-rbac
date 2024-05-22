@@ -4,8 +4,8 @@ export type { BillingSubject } from './billing'
 export { InviteSubjectSchema } from './invite'
 export type { InviteSubject } from './invite'
 
-export { OrganizationSubjectSchema } from './organizations'
-export type { OrganizationSubject } from './organizations'
+export { OrganizationSubjectSchema } from './organization'
+export type { OrganizationSubject } from './organization'
 
 export { ProjectSubjectSchema } from './project'
 export type { ProjectSubject } from './project'
